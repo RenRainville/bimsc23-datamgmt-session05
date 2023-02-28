@@ -7,7 +7,7 @@ import { createApp } from 'vue'
 import App from './App.vue'
 
 // Import styles
-import './styles/button-styles.css'
+//import './styles/button-styles.css'
 import './styles/styles.css'
 import './styles/toggle-styles.css'
 

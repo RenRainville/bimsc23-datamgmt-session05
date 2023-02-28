@@ -9,9 +9,7 @@ const titlec = ref(props.title)
 // Define events that will be accessible from parent component
 const emits = defineEmits(['updateValue'])
 
-
-
-var sliderValue = ref(25)
+var sliderValue = ref(10)
 
 function sendValueUpate()
 {
@@ -41,9 +39,9 @@ function sendValueUpate()
 .modern-range {
   -webkit-appearance: none;
   width: 100%;
-  background: linear-gradient(90deg, #f19af3, #f099b5);
-  height: 17px;
-  border-radius: 15px;
+  background: linear-gradient(90deg, #ea1bee, #24ebf1);
+  height: 25px;
+  border-radius: 18px;
   margin: 10px 0px;
 }
 

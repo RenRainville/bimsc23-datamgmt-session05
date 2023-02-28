@@ -16,29 +16,36 @@ const props = defineProps(["size"]);
 // Three js objects
 let renderer, camera, scene, controls, geometry;
 
-let width = 600;
-let heigh = 700;
+let width = 700;
+let height = 785;
 
 function init() {
   // rendeder
   renderer = new THREE.WebGLRenderer();
-  renderer.setSize(width, heigh);
+  renderer.setSize(width, height);
   renderer.setPixelRatio(window.devicePixelRatio);
   document.getElementById("threejs-container").appendChild(renderer.domElement);
 
   // camera
-  camera = new THREE.PerspectiveCamera(75, width / heigh, 0.1, 1000);
+  camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 1000);
   camera.position.set(0, 0, 40);
 
   // scene
   scene = new THREE.Scene();
-  scene.background = new THREE.Color("#f5f6fa");
+  scene.background = new THREE.Color("darkgrey");
 
   // orbit controls
   controls = new OrbitControls(camera, renderer.domElement);
 
+  //directional light
+  const directionalLight = new THREE.DirectionalLight( 0xffffff )
+  directionalLight.position.set( 500, 500, 2000 )
+  directionalLight.castShadow = true
+  directionalLight.intensity = 50
+    scene.add( directionalLight )
+
   // add fun shape
-  createBox(25, 25, 25);
+  createDodechahedron(15, 0);
   animate();
 }
 
@@ -49,8 +56,8 @@ function animate() {
   renderer.render(scene, camera);
 }
 
-function createBox(l, w, h) {
-  geometry = new THREE.BoxGeometry(l, w, h);
+function createDodechahedron(r,d) {
+  geometry = new THREE.DodecahedronGeometry(r,d);
   const material = new THREE.MeshNormalMaterial();
   const sphere = new THREE.Mesh(geometry, material);
   scene.add(sphere);
@@ -58,7 +65,7 @@ function createBox(l, w, h) {
 
 function onSliderChange(color) {
   scene.clear();
-  createBox(props.size, props.size, props.size);
+  createDodechahedron(props.size, 0);
 }
 
 // This function runs at the beginning of the component lifecycle.
@@ -76,7 +83,7 @@ onUpdated(() => {
 </script>
 
 <style scoped>
-#viewport {
+/* #viewport {
   border-style: dashed;
   border-color: #d2dfe8;
   border-width: 4px;
@@ -86,5 +93,5 @@ onUpdated(() => {
   width: 600px;
   min-width: 200px;
   position: inherit;
-}
+} */
 </style>

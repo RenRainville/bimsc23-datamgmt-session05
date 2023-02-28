@@ -33,7 +33,7 @@
   }
 
   .checkbox-wrapper-22 input:checked + .slider {
-    background-color: #f099b5;
+    background-color: #42363a;
   }
 
   .checkbox-wrapper-22 input:checked + .slider:before {
@@ -45,5 +45,5 @@
   }
 
   .checkbox-wrapper-22 .slider.round:before {
-    border-radius: 50%;
+    border-radius: 25%;
   }

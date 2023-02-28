@@ -3,7 +3,7 @@ to define variables, methods and imports of other Vue compoennts. -->
 <script setup>
 // Import other Vue components in order to add them to a template.
 import SliderInput from "./components/SliderInput.vue";
-import ToggleInput from "./components/ToggleInput.vue";
+// import ToggleInput from "./components/ToggleInput.vue";
 import GeometryView from "./components/GeometryView.vue";
 
 // Imports from packages
@@ -12,27 +12,38 @@ import GeometryView from "./components/GeometryView.vue";
 // When ref attribute is added to element, this element then can be referenced
 // in template. It is sort of templatecement of getElementById (but better)
 import { ref } from "vue";
+import { Color } from "three";
 
 // Define variables and constants
-var count = ref(0);
-var firstSlider = ref(25);
-var runToggle = ref(false);
+//var count = ref(0);
+var firstSlider = ref(10);
+var secondSlider = ref(10);
+// var darkToggle = ref(false);
 
 // Define functions
-function increment() {
-  count.value++;
-  //console.log(`Value is: ${count.value}.`);
-}
+// function increment() {
+//   count.value++;
+//   //console.log(`Value is: ${count.value}.`);
+// }
 
 function updateValue(newValue, parameterName) {
-  if (parameterName === "Height") {
+  if (parameterName === "Radius") {
     firstSlider.value = newValue;
   }
 }
 
-function updateToggle(newValue) {
-  runToggle.value = newValue;
+function updateVolume(newValue, parameterName) {
+  if (parameterName === "Volume") {
+    secondSlider.value = newValue;
+  }
 }
+
+// function updateToggle(newValue) {
+//   darkToggle.value = newValue;
+// }
+// function changeBackground(){
+//   document.body.style.backgroundColor = "darkgrey";
+//   }
 </script>
 
 <!-- Template is a HTML-based syntax that allows you to bind the rendered DOM elements
@@ -53,21 +64,26 @@ with data, objects, functions etc. -->
     <div>
       <!-- Vue component injected into App.vue component template.
       That makes it App.vue a parent and SliderInput.vue a child. -->
-      <SliderInput title="Height"
+      <SliderInput title="Radius"
         v-bind:min="1" v-bind:max="50" v-bind:step="1"
         v-on:updateValue="updateValue"/>
+      
+      <SliderInput title="Volume"
+        v-bind:min="0" v-bind:max="11" v-bind:step="1"
+        v-on:updateValue="updateVolume"/>
 
-      <ToggleInput title="Run?" v-on:updateValue="updateToggle"></ToggleInput>
-
-      <h2>Value received in App.vue: {{ firstSlider }}</h2>
-      <h2>Value received in App.vue: {{ runToggle }}</h2>
+      <!-- <ToggleInput title= "DarkMode?" v-on:updateValue="updateToggle"></ToggleInput>
+  -->
+      <h2>Radius Value of the Dodechahedron: {{ firstSlider }}</h2>
+      <h2>Volume has been set to: {{ secondSlider }}</h2>
+      <!-- <h2>Have you Chosen Dark Mode?: {{ darkToggle }}</h2> -->
     </div>
 
     <div id="content">
-      <GeometryView :size="firstSlider" />
+      <GeometryView :size="firstSlider"/>
 
       <!-- uncomment to add another geometryview -->
-      <!-- <GeometryView :size="firstSlider"/> -->
+      <!-- <GeometryView :size="firstSlider" /> -->
     </div>
   </div>
 </template>
@@ -75,11 +91,10 @@ with data, objects, functions etc. -->
 <!-- Style is for CSS styling -->
 <style>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: Franklin 'Franklin Gothic Medium', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-
-  color: #2c3e50;
+  color: #411515;
 }
 
 #top-bar {
@@ -92,7 +107,7 @@ with data, objects, functions etc. -->
 #title-container {
   display: flex;
   align-items: center;
-  color: white;
+  color: #411515;
   margin-right: 1.5rem;
 }
 
@@ -113,4 +128,16 @@ h2 {
   font-weight: 600;
   letter-spacing: 0.01em;
 }
+
+body{
+  background-color: darkgrey;
+}
+
+/* body {
+  if(v-bind(updateToggle)) {
+    background-color:#a3a3a3;
+  } else {
+    background-color:#f0ffff;
+  }
+} */
 </style>
