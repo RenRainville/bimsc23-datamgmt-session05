@@ -11,7 +11,7 @@ import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 
 // Property coming from parent component
-const props = defineProps(["size"]);
+const props = defineProps(["size", "mat"]);
 
 // Three js objects
 let renderer, camera, scene, controls, geometry;
@@ -37,12 +37,24 @@ function init() {
   // orbit controls
   controls = new OrbitControls(camera, renderer.domElement);
 
-  //directional light
-  const directionalLight = new THREE.DirectionalLight( 0xffffff )
-  directionalLight.position.set( 500, 500, 2000 )
-  directionalLight.castShadow = true
-  directionalLight.intensity = 50
-    scene.add( directionalLight )
+  //directional lights
+  const directionalLight1 = new THREE.DirectionalLight( 0xffffff )
+  directionalLight1.position.set( 0, 50, 200 )
+  directionalLight1.castShadow = true
+  directionalLight1.intensity = 10
+  scene.add( directionalLight1 )
+
+  const directionalLight2 = new THREE.DirectionalLight( 0xffffff )
+  directionalLight2.position.set( 50, 0, 200 )
+  directionalLight2.castShadow = true
+  directionalLight2.intensity = 10
+  scene.add( directionalLight2 )
+
+  const ambientLight = new THREE.AmbientLight( 0xffffff )
+  ambientLight.position.set( 50, 50, 200 )
+  ambientLight.castShadow = true
+  ambientLight.intensity = 10
+    scene.add( ambientLight )
 
   // add fun shape
   createDodechahedron(15, 0);
@@ -56,10 +68,14 @@ function animate() {
   renderer.render(scene, camera);
 }
 
-function createDodechahedron(r,d) {
+function createDodechahedron(r,d,) {
   geometry = new THREE.DodecahedronGeometry(r,d);
-  const material = new THREE.MeshNormalMaterial();
-  const sphere = new THREE.Mesh(geometry, material);
+  const mat = new THREE.MeshNormalMaterial();
+  // const mat = new THREE.MeshStandardMaterial({
+  //   color:"Magenta",
+  //   flatShading: true
+  // });
+  const sphere = new THREE.Mesh(geometry, mat);
   scene.add(sphere);
 }
 

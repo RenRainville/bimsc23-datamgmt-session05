@@ -5,6 +5,7 @@ to define variables, methods and imports of other Vue compoennts. -->
 import SliderInput from "./components/SliderInput.vue";
 // import ToggleInput from "./components/ToggleInput.vue";
 import GeometryView from "./components/GeometryView.vue";
+// import TextView from "./components/TextView.vue";
 
 // Imports from packages
 
@@ -81,6 +82,7 @@ with data, objects, functions etc. -->
 
     <div id="content">
       <GeometryView :size="firstSlider"/>
+      <!-- <TextView :size="secondSlider"/> -->
 
       <!-- uncomment to add another geometryview -->
       <!-- <GeometryView :size="firstSlider" /> -->
