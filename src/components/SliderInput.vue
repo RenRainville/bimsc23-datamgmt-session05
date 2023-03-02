@@ -9,7 +9,7 @@ const titlec = ref(props.title)
 // Define events that will be accessible from parent component
 const emits = defineEmits(['updateValue'])
 
-var sliderValue = ref(10)
+var sliderValue = ref()
 
 function sendValueUpate()
 {
