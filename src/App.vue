@@ -5,7 +5,7 @@ to define variables, methods and imports of other Vue compoennts. -->
 import SliderInput from "./components/SliderInput.vue";
 // import ToggleInput from "./components/ToggleInput.vue";
 import GeometryView from "./components/GeometryView.vue";
-// import TextView from "./components/TextView.vue";
+import TextView from "./components/TextView.vue";
 //import image from "./assets/Buckminster-Fuller.png"
 //<img :src="require(image)"/>
 
@@ -21,6 +21,7 @@ import { ref } from "vue";
 //var count = ref(0);
 var firstSlider = ref(10);
 var secondSlider = ref(10);
+var name = ref();
 // var darkToggle = ref(false);
 
 // Define functions
@@ -39,6 +40,11 @@ function updateVolume(newValue, parameterName) {
   if (parameterName === "Volume") {
     secondSlider.value = newValue;
   }
+}
+
+function updateText(newValue) {
+  name.value = newValue;
+  console.log(newValue);
 }
 
 // function updateToggle(newValue) {
@@ -75,6 +81,10 @@ with data, objects, functions etc. -->
         v-bind:min="0" v-bind:max="11" v-bind:step="1"
         v-on:updateValue="updateVolume"/>
 
+        <TextView title="GrasshopperInput"
+          v-on:updateText="updateText"
+        />
+        
       <!-- <ToggleInput title= "DarkMode?" v-on:updateValue="updateToggle"></ToggleInput>
   -->
       <h2>Radius Value of the Dodechahedron: {{ firstSlider }}</h2>
@@ -89,8 +99,7 @@ with data, objects, functions etc. -->
       />
       <!-- v-bind:image="image"-->
 
-      <!-- <TextView 
-        v-bind:size="secondSlider"/> -->
+
 
       <!-- uncomment to add another geometryview -->
       <!-- <GeometryView :size="firstSlider" /> -->
