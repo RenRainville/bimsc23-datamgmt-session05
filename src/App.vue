@@ -6,6 +6,8 @@ import SliderInput from "./components/SliderInput.vue";
 // import ToggleInput from "./components/ToggleInput.vue";
 import GeometryView from "./components/GeometryView.vue";
 // import TextView from "./components/TextView.vue";
+//import image from "./assets/Buckminster-Fuller.png"
+//<img :src="require(image)"/>
 
 // Imports from packages
 
@@ -13,7 +15,7 @@ import GeometryView from "./components/GeometryView.vue";
 // When ref attribute is added to element, this element then can be referenced
 // in template. It is sort of templatecement of getElementById (but better)
 import { ref } from "vue";
-import { Color } from "three";
+//import { Color } from "three";
 
 // Define variables and constants
 //var count = ref(0);
@@ -81,8 +83,14 @@ with data, objects, functions etc. -->
     </div>
 
     <div id="content">
-      <GeometryView :size="firstSlider"/>
-      <!-- <TextView :size="secondSlider"/> -->
+      <GeometryView 
+      v-bind:size="firstSlider"
+
+      />
+      <!-- v-bind:image="image"-->
+
+      <!-- <TextView 
+        v-bind:size="secondSlider"/> -->
 
       <!-- uncomment to add another geometryview -->
       <!-- <GeometryView :size="firstSlider" /> -->

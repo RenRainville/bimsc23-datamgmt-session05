@@ -50,7 +50,7 @@
     const loader = new FontLoader();
     loader.load('fonts/doidsans.typeface.json', function (font){
         const geometry = new TextGeometry( 'Hello World!'), {
-            font: font,
+            font:font,
             size:15,
             height:5,
             curveSegments:12,
@@ -63,7 +63,7 @@
     })
     // add fun shape
     // createDodechahedron(15, 0);
-    TextGeometry("HowFun");
+    geometry("HowFun");
     animate();
   }
   

@@ -9,9 +9,12 @@
 import { onMounted, onUpdated } from "vue";
 import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
+//import image from ".src/assets/Buckminster-Fuller.png"
+
+//<img src="image"/>
 
 // Property coming from parent component
-const props = defineProps(["size", "mat"]);
+const props = defineProps(["size"]);
 
 // Three js objects
 let renderer, camera, scene, controls, geometry, mat;
@@ -38,23 +41,23 @@ function init() {
   controls = new OrbitControls(camera, renderer.domElement);
 
   //directional lights
-  // const directionalLight1 = new THREE.DirectionalLight( 0xffffff )
-  // directionalLight1.position.set( 0, 50, 200 )
-  // directionalLight1.castShadow = true
-  // directionalLight1.intensity = 10
-  // scene.add( directionalLight1 )
+  const directionalLight1 = new THREE.DirectionalLight( 0xffffff )
+  directionalLight1.position.set( 0, 50, 200 )
+  directionalLight1.castShadow = true
+  directionalLight1.intensity = 10
+  scene.add( directionalLight1 )
 
-  // const directionalLight2 = new THREE.DirectionalLight( 0xffffff )
-  // directionalLight2.position.set( 50, 0, 200 )
-  // directionalLight2.castShadow = true
-  // directionalLight2.intensity = 10
-  // scene.add( directionalLight2 )
+  const directionalLight2 = new THREE.DirectionalLight( 0xffffff )
+  directionalLight2.position.set( 50, 0, 200 )
+  directionalLight2.castShadow = true
+  directionalLight2.intensity = 10
+  scene.add( directionalLight2 )
 
-  // const ambientLight = new THREE.AmbientLight( 0xffffff )
-  // ambientLight.position.set( 50, 50, 200 )
-  // ambientLight.castShadow = true
-  // ambientLight.intensity = 10
-  //   scene.add( ambientLight )
+  const ambientLight = new THREE.AmbientLight( 0xffffff )
+  ambientLight.position.set( 50, 50, 200 )
+  ambientLight.castShadow = true
+  ambientLight.intensity = 10
+    scene.add( ambientLight )
 
   // add fun shape
   createDodechahedron(15, 0);
@@ -70,15 +73,15 @@ function animate() {
 
 function createDodechahedron(r,d,) {
   geometry = new THREE.DodecahedronGeometry(r,d);
-  //const mat = new THREE.MeshNormalMaterial();
+  const mat = new THREE.MeshNormalMaterial();
 
-  const loader = new THREE.TextureLoader();
-  const material = new THREE.MeshBasicMaterial({
-   color: 0xFF8844,
-   map: loader.load('./src/assets/Buckminster-Fuller.png'),
-  });
-  const Dodechahedron = new THREE.Mesh(geometry, mat);
-  scene.add(Dodechahedron);
+  // const loader = new THREE.TextureLoader();
+  // const mat = new THREE.MeshBasicMaterial({
+  //  color: 0xFF8844,
+  //  map: loader.load(image),
+  //});
+  const sphere = new THREE.Mesh(geometry, mat);
+  scene.add(sphere);
   // const mat = new THREE.MeshStandardMaterial({
   //   color:"Magenta",
   //   flatShading: true
