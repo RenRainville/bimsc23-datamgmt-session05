@@ -51,6 +51,6 @@ function sendValueUpate()
   width: 15px;
   border-radius: 15px;
   background-color: black;
-  cursor: pointer;
+  cursor: crosshair;
 }
 </style>
